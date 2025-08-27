@@ -1,0 +1,599 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Purvraj Dodiya by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- Added Google Font 'Poppins' -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+		<!-- Project section color overrides -->
+		<style>
+			/* CSS Variables for theme management */
+			:root {
+				--background-light: #fbfcfd;
+				--background-projects: #ffffff;
+				--text-dark: #111111;
+				--text-light: #ffffff;
+				--text-muted: #4a5568;
+				--primary-color: #0057d1;
+				--secondary-color: #111111;
+				--accent-color: #f0f4ff;
+				--border-color: #eef2f7;
+				--shadow-color: rgba(0, 0, 0, 0.08);
+			}
+
+			/* Sidebar width override (desktop) - increased so labels are visible */
+			/* Sidebar: light background, dark text */
+			#sidebar {
+				background: var(--background-light) !important;   /* very light */
+				color: var(--text-dark) !important;        /* dark text */
+				border-right: 1px solid #e6e9ee;  /* subtle divider */
+			}
+
+			#sidebar .inner { color: inherit; }
+
+			/* Nav links: dark, with soft hover */
+			#sidebar nav ul li a {
+				color: var(--text-dark);
+				background: transparent;
+				padding: 0.35rem 0;
+				display: block;
+			}
+			#sidebar nav ul li a:hover,
+			#sidebar nav ul li a:focus {
+				background: rgba(0,0,0,0.04);
+				color: #000;
+			}
+
+			@media (min-width: 980px) {
+				#sidebar { width: 200px !important; }
+				#wrapper { margin-left: 200px !important; }
+
+				/* restore inner padding so content fits comfortably */
+				#sidebar .inner { padding-left: 1rem; padding-right: 1rem; }
+
+				/* readable nav text and allow wrapping */
+				#sidebar nav ul li a {
+					font-size: 1rem;
+					line-height: 1.4;
+					white-space: normal;
+					word-wrap: break-word;
+					overflow-wrap: normal;
+					text-align: left;
+					display: block;
+				}
+
+				#sidebar nav ul li { padding: 0.35rem 0; }
+			}
+
+			/* Projects section: white background and dark text */
+			#one { 
+				background: var(--background-projects);
+				color: var(--text-dark);
+			}
+			#one .inner {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+			.projects-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+			.project-card {
+				background: #fff;
+				border: 1px solid var(--border-color);
+				border-radius: 12px;
+				overflow: hidden;
+				transition: transform .3s ease, box-shadow .3s ease;
+			}
+			.project-card:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 12px 30px var(--shadow-color);
+			}
+			.project-card .image {
+				aspect-ratio: 16/9;
+				overflow: hidden;
+				background: #f5f8ff;
+			}
+			.project-card .image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform .6s cubic-bezier(.2,.8,.2,1);
+			}
+			.project-card:hover .image img {
+				transform: scale(1.05);
+			}
+			.project-card .content {
+				padding: 1.5rem;
+			}
+			.project-card .tags {
+				display: flex;
+				gap: .5rem;
+				margin-bottom: 1rem;
+			}
+			.project-card .tag {
+				font-size: .8rem;
+				padding: .25rem .6rem;
+				border-radius: 99px;
+				background: var(--accent-color);
+				color: var(--primary-color);
+			}
+			.project-card h2 {
+				font-size: 1.25rem;
+				margin: 0 0 .75rem;
+			}
+			.project-card p {
+				margin: 0 0 1.25rem;
+				color: var(--text-muted);
+			}
+
+			/* Ensure headings and paragraphs are readable (dark) */
+			#one h2, #one p { color: var(--text-dark); }
+
+			/* Button appearance for light background - make buttons dark */
+			#one .actions .button, #one a.button {
+				background: var(--text-dark);         /* dark background */
+				color: var(--text-light);              /* light text */
+				border: 1px solid #0a0a0a;   /* subtle dark border */
+				box-shadow: none;
+				transition: background-color 0.3s ease; /* Add transition for smooth color change */
+			}
+			#one .actions .button:hover, #one a.button:hover {
+				background: #663399;         /* New hover color */
+				color: var(--text-light);
+				border-color: #663399;
+			}
+
+			/* Remove darkening filter on images for a natural look */
+			#one .image img {
+				filter: none;
+			}
+
+			/* Link / accent color */
+			#one a { color: var(--primary-color); }
+
+			/* Get in touch: force white email text and white social icons */
+			#three { /* keep whatever background you have */ }
+			#three .contact a { color: var(--text-light) !important; text-decoration: none; }
+			#three .contact h3,
+			#three .contact span { color: var(--text-light) !important; }
+
+			/* Social icons (font icons) and their labels */
+			#three .icons a,
+			#three .icons a .label,
+			#three .icons li a { color: var(--text-light) !important; }
+			#three .icons a:hover { opacity: 0.95; }
+
+			/* If icons use SVG or pseudo-elements, ensure those inherit color */
+			#three .icons a svg,
+			#three .icons a::before,
+			#three .icons a::after { color: inherit; fill: currentColor; }
+
+			/* Get in touch: force headline to white */
+			#three h2 { color: var(--text-light) !important; }
+
+			/* Coming Soon section styling */
+			#coming {
+				background: #f5f8ff;
+				padding: 4rem 0;
+			}
+			#coming .inner {
+				max-width: 1100px;
+				margin: 0 auto;
+			}
+			#coming h2 { color: var(--text-dark); margin-bottom: 1rem; }
+			#coming p { color: var(--text-dark); }  /* Added this line to make text black */
+			#coming .grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+			#coming .card {
+				background: white;
+				padding: 1.5rem;
+				border-radius: 8px;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+			}
+			#coming .card h3 { color: var(--text-dark); }
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Welcome</a></li>
+							<li><a href="#one">Projects</a></li>
+							<li><a href="#coming">Coming Soon</a></li>
+							<li><a href="#three">Get in touch</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>👋 Purvraj Dodiya</h1>
+							<p> Welcome! I'm a Data Analyst who finds the stories hidden within data. 
+								From cleaning datasets to building insightful dashboards, I use SQL, Power BI, Tableau, and Python to help businesses solve real-world problems. 
+								See how I do it in my projects below.
+						
+							</a></p>
+							<ul class="actions">
+								<li><a href="#one" class="button scrolly">See Project</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style2">
+    <div class="inner">
+        <h2>Projects</h2>
+        <p>A selection of my data analysis and visualization work</p>
+        
+        <div class="projects-grid">
+            <article class="project-card reveal">
+                <div class="image">
+                    <img src="images/project1.2.png" alt="Data Cleaning Project">
+                </div>
+                <div class="content">
+                    <div class="tags">
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Data Cleaning</span>
+                    </div>
+                    <h2>Data Cleaning in PostgreSQL</h2>
+                    <p>Using PostgreSQL, I cleaned a housing dataset by populating missing addresses, splitting address columns, and removing duplicates with a CTE.</p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Purvrajdodiya/Data-cleaning-in-PostgreSQL-" class="button">View project</a></li>
+                    </ul>
+                </div>
+            </article>
+            <article class="project-card reveal">
+                <div class="image">
+                    <img src="images/project2.png" alt="Covid Data Analysis">
+                </div>
+                <div class="content">
+                    <div class="tags">
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Tableau</span>
+                    </div>
+                    <h2>Covid data analysis and data visualization</h2>
+                    <p>I analyzed global COVID-19 data to find trends in infections, deaths, and vaccinations. This project involved exploring the data with SQL and visualizing it with Tableau.</p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Purvrajdodiya/SQL-Data-explore-and-Data-Visualisation-using-Tableau-" class="button">View project</a></li>
+                    </ul>
+                </div>
+            </article>
+            <article class="project-card reveal">
+                <div class="image">
+                    <img src="images/project3.png" alt="Supply Chain Analysis">
+                </div>
+                <div class="content">
+                    <div class="tags">
+                        <span class="tag">Excel</span>
+                        <span class="tag">Tableau</span>
+                    </div>
+                    <h2>A-Mart: Supply Chain Performance Analysis</h2>
+                    <p>This project uses data to enhance A-Mart's delivery efficiency. including On-Time (OT), In-Full (IF), and On-Time In-Full (OTIF) percentages, to improve reliability and customer satisfaction.</p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Purvrajdodiya/supply-chain-Data-Analysis" class="button">View project</a></li>
+                    </ul>
+                </div>
+            </article>
+            <article class="project-card reveal">
+                <div class="image">
+                    <img src="images/project4.png" alt="Movie Success Metrics">
+                </div>
+                <div class="content">
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Data exploring</span>
+                    </div>
+                    <h2>Movie Success Metrics: A Correlation Study using Python</h2>
+                    <p>Explore the connections between a film's budget, user ratings, and revenue to uncover the secrets behind blockbuster hits.</p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Purvrajdodiya/Movie-data-Analysis-in-Python-" class="button">View project</a></li>
+                    </ul>
+                </div>
+            </article>
+            <article class="project-card reveal">
+                <div class="image">
+                    <img src="images/project5.png" alt="Sales Data Analysis">
+                </div>
+                <div class="content">
+                    <div class="tags">
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Power BI</span>
+                    </div>
+                    <h2>Sales Data Analysis and Performance Dashboard</h2>
+                    <p>Using SQL and Power BI, this project turns sales data into an interactive dashboard to track key performance indicators (KPIs) like revenue and profit, guiding strategic decisions.</p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Purvrajdodiya/sales-data-analysis-Project-" class="button">View project</a></li>
+                    </ul>
+                </div>
+            </article>
+            <article class="project-card reveal">
+                <div class="image">
+                    <img src="images/project6.png" alt="Word of Mouth Advertising">
+                </div>
+                <div class="content">
+                    <div class="tags">
+                        <span class="tag">Jamovi</span>
+                        <span class="tag">Qualrtics</span>
+                    </div>
+                    <h2>Investigating Word of Mouth Advertising</h2>
+                    <p>Those who read humorous internet reviews are more likely to make a purchase. However, people will not trust a review if it contains poor grammar. This is a crucial piece of advice for encouraging consumers to tell others about a product.</p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Purvrajdodiya/Investing-Word-of-mouth-Adverting-on-Amazon-Review-" class="button">View project</a></li>
+                    </ul>
+                </div>
+            </article>
+            <article class="project-card reveal">
+                <div class="image">
+                    <img src="images/project7.png" alt="Student Mental Health Analysis">
+                </div>
+                <div class="content">
+                    <div class="tags">
+                        <span class="tag">Jamovi</span>
+                        <span class="tag">SPSS</span>
+                    </div>
+                    <h2>Student Mental Health and Academic Performance Analysis</h2>
+                    <p>This project analyzes student data to reveal how factors like peer support and family stability affect academic success, offering insights to improve university support systems.</p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Purvrajdodiya/Quantitative-Data-Research-Report" class="button">View project</a></li>
+                    </ul>
+                </div>
+            </article>
+            <article class="project-card reveal">
+                <div class="image">
+                    <img src="images/project8.png" alt="HR Attrition Analysis">
+                </div>
+                <div class="content">
+                    <div class="tags">
+                        <span class="tag">Excel</span>
+                        <span class="tag">Tableau</span>
+                    </div>
+                    <h2>Interactive HR Attrition Dashboard & Analysis</h2>
+                    <p>Using Excel and Tableau, I analyzed HR data to find that attrition is highest in R&D, especially among younger employees working overtime. From this, I created recommendations to improve retention.</p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Purvrajdodiya/Movie-data-Analysis-in-Python-" class="button">View project</a></li>
+                    </ul>
+                </div>
+            </article>
+            <article class="project-card reveal">
+                <div class="image">
+                    <img src="images/project9.png" alt="Sustainable Transportation">
+                </div>
+                <div class="content">
+                    <div class="tags">
+                        <span class="tag">Data Analysis</span>
+                        <span class="tag">Sustainability</span>
+                    </div>
+                    <h2>The Global Transition to Sustainable Transportation</h2>
+                    <p>The transportation sector's shift from polluting fossil fuels to sustainable alternatives like electric vehicles. It examines the challenges and solutions, focusing on the role of government in creating a cleaner transportation future.</p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Purvrajdodiya/Research-Report-on-Sustainable-Transportation-Futures" class="button">View project</a></li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+					<!-- Coming Soon Projects -->
+					<section id="coming" class="wrapper style2 fade-up">
+						<div class="inner">
+							<h2>Coming Soon Projects</h2>
+							<p>Exciting new projects in development. Stay tuned!</p>
+							
+							<div class="grid">
+								<div class="card reveal">
+									<h3>Data Analytics Blog </h3>
+									<p> An AI-automated blog/newslatter using Make.com to keep you informed on the latest in data science.</p>
+								</div>
+								<div class="card reveal">
+									<h3>NYC Public Transit Performance Analysis</h3>
+									<p>Query and analyze billions of records from the massive NYC Taxi public dataset directly in the cloud using Google BigQuery or athena (i have not decided yet) to uncover travel patterns and business insights.</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Get in touch</h2>
+						
+							<div class="split style1">
+								<section>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="name">Name</label>
+												<input type="text" name="name" id="name" />
+											</div>
+											<div class="field half">
+												<label for="email">Email</label>
+												<input type="text" name="email" id="email" />
+											</div>
+											<div class="field">
+												<label for="message">Message</label>
+												<textarea name="message" id="message" rows="5"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><a href="" class="button submit">Send Message</a></li>
+										</ul>
+									</form>
+								</section>
+								<section>
+									<ul class="contact">
+							
+							
+										<li>
+											<h3>Email</h3>
+											<a href="#">purvarajdodiya021@gmail.com</a>
+										</li>
+										<li>
+											<h3>Phone</h3>
+											<span>(+91) 917-3300-665</span>
+										</li>
+										<li>
+											<h3>Social</h3>
+											<ul class="icons" style="font-size: 2em;">  <!-- Increased base size -->
+                                                <li><a href="https://github.com/Purvrajdodiya" class="icon brands fa-github" style="font-size: 1.5em;"><span class="label">Github</span></a></li>
+                                                <li><a href="https://www.linkedin.com/in/purvraj-dodiya/" class="icon brands fa-linkedin-in" style="font-size: 1.5em;"><span class="label">LinkedIn</span></a></li>
+                                                <li><a href="https://public.tableau.com/app/profile/purvraj.dodiya/vizzes" class="icon solid fa-chart-bar" style="font-size: 1.5em;"><span class="label">Tableau</span></a></li>
+                                            </ul>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; 2025 Purvraj Dodiya. All Rights Reserved.					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+            <!-- Scroll reveal + parallax script -->
+            <script>
+                // Reveal on scroll using IntersectionObserver and simple parallax for images
+                (function() {
+                    // Selectors to reveal
+                    const revealSelectors = [
+                        '#intro .inner',
+                        '#one .content .inner',
+                        '#one .image',
+                        '#coming .inner',
+                        '#coming .card',
+                        '#three .inner',
+                        '.features section'
+                    ];
+
+                    // Add 'reveal' class to each element initially
+                    revealSelectors.forEach(sel => {
+                        document.querySelectorAll(sel).forEach(el => {
+                            // don't double-add
+                            if (!el.classList.contains('reveal')) el.classList.add('reveal');
+                            // add parallax marker for images
+                            if (el.matches && el.matches('#one .image')) {
+                                el.classList.add('parallax');
+                                const img = el.querySelector('img');
+                                if (img) img.classList.add('parallax');
+                            }
+                        });
+                    });
+
+                    // IntersectionObserver to toggle visibility
+                    const io = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('is-visible');
+                            } else {
+                                // keep visible once shown (optional): comment next line to keep persistent
+                                // entry.target.classList.remove('is-visible');
+                            }
+                        });
+                    }, {
+                        root: null,
+                        threshold: 0.15
+                    });
+
+                    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+                    // Parallax effect for images (lightweight)
+                    const parallaxEls = Array.from(document.querySelectorAll('#one .image, #one .image img'));
+                    let ticking = false;
+                    function onScroll() {
+                        if (!ticking) {
+                            window.requestAnimationFrame(() => {
+                                const center = window.innerHeight / 2;
+                                parallaxEls.forEach(el => {
+                                    const rect = el.getBoundingClientRect();
+                                    const distance = rect.top - center;
+                                    // small factor: adjust for stronger/weaker parallax
+                                    const translate = distance * -0.06;
+                                    el.style.transform = 'translateY(' + translate.toFixed(3) + 'px)';
+                                });
+                                ticking = false;
+                            });
+                            ticking = true;
+                        }
+                    }
+                    window.addEventListener('scroll', onScroll, { passive: true });
+                    onScroll();
+
+                    // Highlight current sidebar link based on scroll position
+                    const sections = document.querySelectorAll('section[id]');
+                    const linkMap = {};
+                    sections.forEach(s => {
+                        const id = s.id;
+                        const link = document.querySelector('#sidebar nav ul li a[href="#' + id + '"]');
+                        if (link) linkMap[id] = link;
+                    });
+                    const navObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            const id = entry.target.id;
+                            const link = linkMap[id];
+                            if (!link) return;
+                            if (entry.isIntersecting) {
+                                Object.values(linkMap).forEach(l => l.classList.remove('active'));
+                                link.classList.add('active');
+                            }
+                        });
+                    }, { threshold: 0.45 });
+                    sections.forEach(s => navObserver.observe(s));
+
+                    // Small entrance animation for sidebar items
+                    document.querySelectorAll('#sidebar nav ul li a').forEach((a, i) => {
+                        a.style.opacity = 0;
+                        a.style.transform = 'translateX(-6px)';
+                        setTimeout(() => {
+                            a.style.transition = 'opacity .45s ease, transform .45s ease';
+                            a.style.opacity = 1;
+                            a.style.transform = 'none';
+                        }, 220 + i * 60);
+                    });
+                })();
+            </script>
+
+	</body>
+</html>
